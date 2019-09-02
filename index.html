@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MK SOUNDS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">song</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">finish</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">round2</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">finish</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">brutality</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">scorpion</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">song</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">subzero</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">toasty</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="mortal-kombat.mp3"></audio>
+  <audio data-key="83" src="finish-him.mp3"></audio>
+  <audio data-key="68" src="round2.mp3"></audio>
+  <audio data-key="70" src="21_4.mp3"></audio>
+  <audio data-key="71" src="18_2.mp3"></audio>
+  <audio data-key="72" src="scorpion-get-over-here.mp3"></audio>
+  <audio data-key="74" src="2-minutos-de-cau-mortal-kombat-cutmp3_1.mp3"></audio>
+  <audio data-key="75" src="mk3-09280.mp3"></audio>
+  <audio data-key="76" src="toasty_tfCWsU6.mp3"></audio>
+
+<script>
+ window.addEventListener('keydown', function(e){
+const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+if(!audio) return;
+audio.currentTime = 0;
+audio.play();
+key.classList.add('playing');
+})
+ function removeTransition(e){
+   if(e.propertyName !== 'transform') return;
+   this.classList.remove('playing');
+ }
+ const keys = document.querySelectorAll('.key');
+ keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+</script>
+
+
+</body>
+</html>
